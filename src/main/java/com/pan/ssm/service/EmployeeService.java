@@ -14,7 +14,11 @@ import com.pan.ssm.bean.EmployeeExample.Criteria;
 import com.pan.ssm.dao.EmployeeMapper;
 
 /**
+ *
+ * @ClassName: EmployeeService
+ * @Description: 处理与员工相关的操作
  * @author Pan
+ * @date 2017年7月12日
  *
  */
 @Service
@@ -24,7 +28,12 @@ public class EmployeeService {
 	EmployeeMapper employeeMapper;
 
 	/**
-	 * 查询所有员工
+	 *
+	 * @Title: getAllEmployees
+	 * @Description: 获取所有员工信息，并以List的形式返回
+	 * @return List<Employee>
+	 * @throws
+	 *
 	 * @return
 	 */
 	public List<Employee> getAllEmployees() {
@@ -32,6 +41,15 @@ public class EmployeeService {
 		return employeeMapper.selectByExampleWithDept(null);
 	}
 
+	/**
+	 *
+	 * @Title: saveEmployee
+	 * @Description: 新增员工
+	 * @return void
+	 * @throws
+	 *
+	 * @param employee
+	 */
 	public void saveEmployee(Employee employee) {
 		// TODO Auto-generated method stub
 		employeeMapper.insertSelective(employee);

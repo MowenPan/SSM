@@ -11,10 +11,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ *
  * @ClassName: Msg
- * @Description: TODO
+ * @Description: 保存信息
  * @author Pan
- * @date 2017年7月7日
+ * @date 2017年7月12日
  *
  */
 public class Msg {

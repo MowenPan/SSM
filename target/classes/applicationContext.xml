@@ -29,6 +29,7 @@
 	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean" >
 		<!-- MyBatis全局配置文件位置 -->
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+		<!-- 配置数据源 -->
 		<property name="dataSource" ref="pooledDataSource"></property>
 		<!-- 指定Mapper文件的位置 -->
 		<property name="mapperLocations" value="classpath:mapper/*.xml"></property>

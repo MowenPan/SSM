@@ -23,7 +23,7 @@
 </head>
 <body>
 
-	<!-- Modal -->
+	<!-- 添加员工模态框 -->
 	<div class="modal fade" id="empAddModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -198,6 +198,7 @@
 		to_page(1);
 	});
 
+	//转到指定页数
 	function to_page(pageNum) {
 		$.ajax({
 			url : "${basePath}/emps_json",
@@ -215,12 +216,16 @@
 		});
 	}
 
+	//创建表格，显示员工信息
 	function build_emps_table(result) {
+		//清空原来的表格信息
 		$("#emps_table tbody").empty();
 
+		//获取员工信息
 		var emps = result.info.pageInfo.list;
+		//遍历员工信息并创建表格
 		$.each(emps, function(index, item) {
-			console.log(item.empName);
+			//console.log(item.empName);
 			var checkBoxTd = $("<td><input type='checkbox' class='check_item' /></td>");
 			var empIdTd = $("<td></td>").append(item.empId);
 			var empNameTd = $("<td></td>").append(item.empName);
@@ -245,23 +250,29 @@
 		});
 	}
 
+	//创建页面相关信息条
 	function build_page_info(result) {
+		//清楚原有的页面信息
 		$("#page_info_area").empty();
-
+		//显示当前页面信息
 		$("#page_info_area").append("当前为第" + result.info.pageInfo.pageNum +
 			"页，共" + result.info.pageInfo.pages +
 			"页，一共有" + result.info.pageInfo.total + "条记录！");
-
+		//记录所有记录数
 		totalRecords = result.info.pageInfo.total;
+		//记录当前页数
 		currentPage = result.info.pageInfo.pageNum;
 	}
 
+	//创建分页条
 	function build_page_nav(result) {
+		//清空原有分页条信息
 		$("#page_nav_area").empty();
 
 		var ulist = $("<ul></ul>").addClass("pagination");
 		var firstPageLi = $("<li></li>").append($("<a></a>").append("首页").attr("href", "#"));
 		var prePageLi = $("<li></li>").append($("<a></a>").append("&laquo;").attr("href", "#"));
+		//判断是否为第一页
 		if (!result.info.pageInfo.hasPreviousPage) {
 			firstPageLi.addClass("disabled");
 			prePageLi.addClass("disabled");
@@ -276,6 +287,7 @@
 
 		var nextPageLi = $("<li></li>").append($("<a></a>").append("&raquo;").attr("href", "#"));
 		var lastPageLi = $("<li></li>").append($("<a></a>").append("末页").attr("href", "#"));
+		//判断是否为最后一页
 		if (!result.info.pageInfo.hasNextPage) {
 			nextPageLi.addClass("disabled");
 			lastPageLi.addClass("disabled");
@@ -309,7 +321,7 @@
 
 		//重置整个表单数据
 		form_reset("#empAddModal form");
-
+		//获取部门信息并添加到下拉框中
 		getDepts("#dept_add_select");
 
 		$('#empAddModal').modal({
@@ -317,6 +329,7 @@
 		});
 	});
 
+	//清空表当数据
 	function form_reset(ele) {
 		$(ele)[0].reset();
 		//清空表单样式
@@ -328,7 +341,7 @@
 	function getDepts(ele) {
 		//清空下拉列表的信息
 		$(ele).empty()
-
+		//发送AJAX请求
 		$.ajax({
 			url : "${basePath}/depts",
 			type : "GET",
@@ -342,8 +355,10 @@
 		});
 	}
 
+	//前端校验表单信息
 	function validate_add_form() {
 		var empName = $("#empName_add_input").val();
+		//定义校验员工名的正则表达式
 		var regName = /(^[a-zA-Z0-9_-]{6,16}$)|(^[\u2E80-\u9FFF]{2,5})/
 		regName.test(empName)
 		if (!regName.test(empName)) {
@@ -358,6 +373,7 @@
 		}
 
 		var email = $("#email_add_input").val()
+		//定义校验邮箱的正则表达式
 		var regEmail = /^([a-zA-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
 		if (!regEmail.test(email)) {
 			//alert("邮箱格式不正确！！！")
@@ -373,6 +389,7 @@
 		return true
 	}
 
+	//显示校验信息
 	function show_validate_msg(ele, status, msg) {
 		//请删除状态
 		$(ele).parent().removeClass("has-success has-error");

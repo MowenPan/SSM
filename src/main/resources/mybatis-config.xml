@@ -2,16 +2,20 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 配置MyBatis -->
 <configuration>
 	<settings>
+		<!-- 开启驼峰命名规则 -->
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
 	<typeAliases>
-		<package name="com.pan.ssm.bean"/>
+		<!-- 设置别名 -->
+		<package name="com.pan.ssm.bean" />
 	</typeAliases>
 	<plugins>
+		<!-- 加载分页插件 -->
 		<plugin interceptor="com.github.pagehelper.PageInterceptor">
-			<property name="reasonable" value="true"/>
+			<property name="reasonable" value="true" />
 		</plugin>
 	</plugins>
 	<mappers>

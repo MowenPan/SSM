@@ -3,13 +3,13 @@ package com.pan.ssm.bean;
 import javax.validation.constraints.Pattern;
 
 /**
- *
- * @ClassName: Employee
- * @Description: 实体类，由MyBatis Generator自动生成
- * @author Pan
- * @date 2017年7月12日
- *
- */
+*
+* @ClassName: Employee
+* @Description: 实体类，由MyBatis Generator自动生成
+* @author Pan
+* @date 2017年7月12日
+*
+*/
 public class Employee {
 	private Integer empId;
 

@@ -1,13 +1,13 @@
 package com.pan.ssm.bean;
 
 /**
- *
- * @ClassName: Department
- * @Description: 实体类，由MyBatis Generator自动生成
- * @author Pan
- * @date 2017年7月12日
- *
- */
+*
+* @ClassName: Department
+* @Description: 实体类，由MyBatis Generator自动生成
+* @author Pan
+* @date 2017年7月12日
+*
+*/
 public class Department {
     private Integer deptId;
 
